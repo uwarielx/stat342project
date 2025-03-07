@@ -81,6 +81,13 @@ where $n_p = 17{,}511$ is the number of subjects in the placebo arm
 and $p_p$ is the (unknown) probability of infection in the placebo
 group.
 
+\subsection{Approaches to Data Analysis}
+
+We employ two different approaches to analyze the data: a Bayesian
+approach and a likelihood-based (frequentist) approach. Each approach is
+detailed below.
+
+
 ## Model
 Describe the statistical model used.
 
