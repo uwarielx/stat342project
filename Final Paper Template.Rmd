@@ -11,7 +11,8 @@ fontsize: 11pt
 ---
 
 ```{r setup, include=FALSE}
-#Use this code chunk to include libraries, and set global options.
+library(knitr)
+library(ggplot2)
 ```
 
 # Abstract
@@ -26,9 +27,41 @@ Write your abstract here.
 Provide an introduction with background information.
 
 ```{r label="important_R_code", eval=TRUE, echo=FALSE}
-# You can reference your code in the appendix (sample here).
+df <- data.frame(
+  Group= c("BNT162b2", "Placebo", "Total"),
+  Infected= c(8, 162, 170),
+  Uninfected=c(17403,17349,34752),
+  Sample_size= c(17411, 17511, 34922)
+)
+kable(df, caption = "Vaccine Efficacy in Trails ")
 ```
 
+```{r label="important_R_code", eval=TRUE, echo=FALSE}
+df$InfectionRate <- 100 * df$Infected / df$Sample_size
+df
+df_no_total <- subset(df, Group != "Total")
+ggplot(df_no_total, aes(x = Group, y = InfectionRate)) +
+  geom_bar(stat = "identity", fill = "steelblue", width = 0.4) +
+  geom_text(aes(label = paste0(round(InfectionRate, 5), "%")), 
+            vjust = -0.5, 
+            size = 4) +
+  labs(
+    title = "Infection Rate by Group",
+    x = "Group",
+    y = "Infection Rate (%)"
+  ) +
+  theme_minimal()
+```
+
+```{r label="important_R_code", eval=TRUE, echo=FALSE}
+groups <- c("BNT162b2", "Placebo")
+infected <- c(8, 162)
+pie(
+  x = infected,
+  labels = groups,
+  main = "Infected Cases by Group"
+)
+```
 # Statistical Methods
 
 ## Model
