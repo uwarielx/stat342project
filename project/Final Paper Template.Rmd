@@ -26,6 +26,7 @@ Write your abstract here.
 # Introduction / Background
 Provide an introduction with background information.
 
+## Dataframe: 
 ```{r label="important_R_code", eval=TRUE, echo=FALSE}
 df <- data.frame(
   Group= c("BNT162b2", "Placebo", "Total"),
@@ -36,6 +37,7 @@ df <- data.frame(
 kable(df, caption = "Vaccine Efficacy in Trails ")
 ```
 
+## Data Visualization (bar-chart)
 ```{r label="important_R_code", eval=TRUE, echo=FALSE}
 df$InfectionRate <- 100 * df$Infected / df$Sample_size
 df
@@ -53,6 +55,7 @@ ggplot(df_no_total, aes(x = Group, y = InfectionRate)) +
   theme_minimal()
 ```
 
+## Data Visualization (pie chart)
 ```{r label="important_R_code", eval=TRUE, echo=FALSE}
 groups <- c("BNT162b2", "Placebo")
 infected <- c(8, 162)
@@ -62,6 +65,26 @@ pie(
   main = "Infected Cases by Group"
 )
 ```
+
+## Summary:
+```{r}
+pi_b_hat <- 8 / 17411
+pi_p_hat <- 162 / 17511
+```
+$\hat{\pi}_b =$ `r pi_b_hat`, where $\hat{\pi}_b$ is the estimated probability that people who take the vaccine will be infected by COVID-19. 
+$\hat{\pi}_p =$ `r pi_p_hat`, where $\hat{\pi}_p$ is the estimated probability that people who didn't take the vaccine will be infected by COVID-19.
+
+Therefore, the vaccine efficacy $\psi$ is 
+$$
+\psi = \frac{\hat{\pi}_p - \hat{\pi}_b}{\hat{\pi}_p} \approx 0.95
+$$
+
+```{r}
+psi <- (pi_p_hat - pi_b_hat) / pi_p_hat
+psi
+```
+which means that the BNT162b2 vaccine reduces the risk of COVID-19 infection by about 95% relative to those who did not receive the vaccine. 
+
 # Statistical Methods
 
 ## Defining the Random Variables and Statistical Model
