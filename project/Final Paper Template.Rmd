@@ -85,6 +85,47 @@ psi
 ```
 which means that the BNT162b2 vaccine reduces the risk of COVID-19 infection by about 95% relative to those who did not receive the vaccine. 
 
+\subsection{Vaccine Efficacy Definition}
+
+The vaccine efficacy (VE) is defined via the transformation $$
+\mathrm{VE} = 1 - \frac{p_v}{p_v + p_p},
+$$ so that we may introduce the parameter $$
+f_i = \frac{p_v}{p_v + p_p},
+$$ and thus, $\mathrm{VE} = 1 - f_i$. In the study by Polack et al., the
+prior for $f_i$ was specified as $$
+f_i \sim \mathrm{Beta}(0.700102,\,1),
+$$ reflecting the belief (with a six-decimal precision) about the
+infection probability ratio.
+
+\subsection{Parameters and Hypotheses}
+
+The parameters of interest are:
+
+```{=tex}
+\begin{itemize}
+    \item $p_v$ and $p_p$: the infection probabilities in the vaccine and placebo groups.
+    \item $f_i$: the transformed parameter defined as above, from which vaccine efficacy 
+    is derived by $\mathrm{VE} = 1 - f_i$.
+\end{itemize}
+```
+The primary hypothesis of interest is to assess the efficacy of the
+vaccine. Specifically, we wish to test whether the vaccine efficacy
+exceeds a clinically meaningful threshold. For example, one might
+formalize the hypothesis as: \begin{align*}
+H_0 &: \mathrm{VE} \le 30\%, \\
+H_a &: \mathrm{VE} > 30\%.
+\end{align*}
+
+In the Pfizer analysis, the posterior probability
+$\Pr(\mathrm{VE} > 30\%)$ was found to be larger than 0.9999.
+
+\subsection{Approaches to Data Analysis}
+
+We employ two different approaches to analyze the data: a Bayesian
+approach and a likelihood-based (frequentist) approach. Each approach is
+detailed below.
+
+
 # Statistical Methods
 
 ## Defining the Random Variables and Statistical Model
